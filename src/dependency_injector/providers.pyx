@@ -50,10 +50,10 @@ except ImportError:
 
 print("Try to import")
 try:
-    import pydantic_settings as pydantic
-    print("pydantic.VERSION")
+    import pydantic_settings
+    print("pydantic_settings.VERSION")
 except ImportError:
-    pydantic = None
+    pydantic_settings = None
 
 from .errors import (
     Error,
@@ -1798,20 +1798,22 @@ cdef class ConfigurationOption(Provider):
 
         :rtype: None
         """
-        if pydantic is None:
+        print("HHEEELPPP")
+
+        if pydantic_settings is None:
             raise Error(
                 "Unable to load pydantic configuration - pydantic is not installed. "
                 "Install pydantic or install Dependency Injector with pydantic extras: "
                 "\"pip install dependency-injector[pydantic]\""
             )
 
-        if isinstance(settings, CLASS_TYPES) and issubclass(settings, pydantic.BaseSettings):
+        if isinstance(settings, CLASS_TYPES) and issubclass(settings, pydantic_settings.BaseSettings):
             raise Error(
                 "Got settings class, but expect instance: "
                 "instead \"{0}\" use \"{0}()\"".format(settings.__name__)
             )
 
-        if not isinstance(settings, pydantic.BaseSettings):
+        if not isinstance(settings, pydantic_settings.BaseSettings):
             raise Error(
                 "Unable to recognize settings instance, expect \"pydantic.BaseSettings\", "
                 "got {0} instead".format(settings)
@@ -2370,20 +2372,22 @@ cdef class Configuration(Object):
 
         :rtype: None
         """
-        if pydantic is None:
+
+        print("HHEEELPPP")
+        if pydantic_settings is None:
             raise Error(
                 "Unable to load pydantic configuration - pydantic is not installed. "
                 "Install pydantic or install Dependency Injector with pydantic extras: "
                 "\"pip install dependency-injector[pydantic]\""
             )
 
-        if isinstance(settings, CLASS_TYPES) and issubclass(settings, pydantic.BaseSettings):
+        if isinstance(settings, CLASS_TYPES) and issubclass(settings, pydantic_settings.BaseSettings):
             raise Error(
                 "Got settings class, but expect instance: "
                 "instead \"{0}\" use \"{0}()\"".format(settings.__name__)
             )
 
-        if not isinstance(settings, pydantic.BaseSettings):
+        if not isinstance(settings, pydantic_settings.BaseSettings):
             raise Error(
                 "Unable to recognize settings instance, expect \"pydantic.BaseSettings\", "
                 "got {0} instead".format(settings)
