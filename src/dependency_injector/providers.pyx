@@ -48,8 +48,10 @@ try:
 except ImportError:
     yaml = None
 
+print("Try to import")
 try:
     import pydantic_settings as pydantic
+    print("pydantic.VERSION")
 except ImportError:
     pydantic = None
 
