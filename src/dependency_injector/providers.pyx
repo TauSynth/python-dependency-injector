@@ -1788,12 +1788,12 @@ cdef class ConfigurationOption(Provider):
         Loaded configuration is merged recursively over existing configuration.
 
         :param settings: Pydantic settings instances.
-        :type settings: :py:class:`pydantic.BaseSettings`
+        :type settings: :py:class:`pydantic_settings.BaseSettings`
 
         :param required: When required is True, raise an exception if settings dict is empty.
         :type required: bool
 
-        :param kwargs: Keyword arguments forwarded to ``pydantic.BaseSettings.dict()`` call.
+        :param kwargs: Keyword arguments forwarded to ``pydantic_settings.BaseSettings.dict()`` call.
         :type kwargs: Dict[Any, Any]
 
         :rtype: None
@@ -1815,7 +1815,7 @@ cdef class ConfigurationOption(Provider):
 
         if not isinstance(settings, pydantic_settings.BaseSettings):
             raise Error(
-                "Unable to recognize settings instance, expect \"pydantic.BaseSettings\", "
+                "Unable to recognize settings instance, expect \"pydantic_settings.BaseSettings\", "
                 "got {0} instead".format(settings)
             )
 
@@ -2362,12 +2362,12 @@ cdef class Configuration(Object):
         Loaded configuration is merged recursively over existing configuration.
 
         :param settings: Pydantic settings instances.
-        :type settings: :py:class:`pydantic.BaseSettings`
+        :type settings: :py:class:`pydantic_settings.BaseSettings`
 
         :param required: When required is True, raise an exception if settings dict is empty.
         :type required: bool
 
-        :param kwargs: Keyword arguments forwarded to ``pydantic.BaseSettings.dict()`` call.
+        :param kwargs: Keyword arguments forwarded to ``pydantic_settings.BaseSettings.dict()`` call.
         :type kwargs: Dict[Any, Any]
 
         :rtype: None
@@ -2389,7 +2389,7 @@ cdef class Configuration(Object):
 
         if not isinstance(settings, pydantic_settings.BaseSettings):
             raise Error(
-                "Unable to recognize settings instance, expect \"pydantic.BaseSettings\", "
+                "Unable to recognize settings instance, expect \"pydantic_settings.BaseSettings\", "
                 "got {0} instead".format(settings)
             )
 
