@@ -49,7 +49,7 @@ except ImportError:
     yaml = None
 
 try:
-    import pydantic
+    import pydantic_settings as pydantic
 except ImportError:
     pydantic = None
 
@@ -1815,7 +1815,10 @@ cdef class ConfigurationOption(Provider):
                 "got {0} instead".format(settings)
             )
 
-        self.from_dict(settings.dict(**kwargs), required=required)
+        # self.from_dict(settings.dict(**kwargs), required=required)
+
+        settings_dict = settings.model_dump(**kwargs)
+        self.from_dict(settings_dict, required=required)
 
     def from_dict(self, options, required=UNDEFINED):
         """Load configuration from the dictionary.
@@ -2384,7 +2387,10 @@ cdef class Configuration(Object):
                 "got {0} instead".format(settings)
             )
 
-        self.from_dict(settings.dict(**kwargs), required=required)
+        # self.from_dict(settings.dict(**kwargs), required=required)
+
+        settings_dict = settings.model_dump(**kwargs)
+        self.from_dict(settings_dict, required=required)
 
     def from_dict(self, options, required=UNDEFINED):
         """Load configuration from the dictionary.
